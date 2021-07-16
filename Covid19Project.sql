@@ -2,13 +2,12 @@ select *
 From Covid19Project..CovidDeaths
 Order by 3,4
 
---Select *
---From Covid19Project..CovidVaccines
---Order by 3,4
+Select *
+From Covid19Project..CovidVaccines
+Order by 3,4
 
 
 -- Select Relevant Column
-
 Select Location,Date, total_cases, new_cases, total_deaths, population
 From Covid19Project..CovidDeaths
 Order by 1,2
@@ -81,7 +80,6 @@ Population numeric,
 New_vaccinations numeric,
 TotVaccinated numeric
 )
-
 Insert into #PercentPopulationVacccinated
 Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations,SUM(CONVERT(int,new_vaccinations)) OVER (Partition by dea.location order by dea.date) as TotVaccinated
 FROM Covid19Project..CovidDeaths dea
